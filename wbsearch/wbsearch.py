@@ -1,12 +1,15 @@
 import webbrowser
 import click
 import KvK
+from pathlib import Path
 
 @click.command()
 @click.argument('argument', required=True)
 @click.option('--set', '-s', help='Set keywords to access your links', required=False)
-def search(argument, set,):
-    dataBase = KvK.KvK('dataBase.kvk')
+def search(argument, set):
+    directory = Path(__file__).parent
+
+    dataBase = KvK.KvK(f'{path}/dataBase.kvk')
     if set != None and set != '':
         try:
             var = dataBase.get(set)

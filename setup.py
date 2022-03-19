@@ -8,7 +8,7 @@ setup(
     install_requires=['click', 'KvK'],
     license='MIT',
     entry_points='''
-    [console_script]
+    [console_scripts]
     wbsearch=wbsearch:search
     '''
 )

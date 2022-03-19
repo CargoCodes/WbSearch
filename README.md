@@ -10,7 +10,7 @@ Usage:
     $ wbsearch argument
 
 Replace argument with your own research.
-In case you want to search multiple words, you may need to use "" before each space,
+In case you want to search multiple words, you may need to use "\" before each space,
 or use double quotes around, depending on your operating system.
 
     $ wbsearch --set keyword link

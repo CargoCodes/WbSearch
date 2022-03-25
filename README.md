@@ -25,3 +25,9 @@ For example, typing:
 
 Typing "wbsearch youtube", wbsearch will open the
 saved link referring to "youtube" keyword.
+
+Replace keyword with the keyword you want to remove from wbsearch user keywords.
+
+    $ wbsearch
+    
+Type "wbsearch" only with no arguments to get help.

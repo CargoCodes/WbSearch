@@ -1,8 +1,8 @@
 import webbrowser, click, KvK
 from pathlib import Path
 
-@click.command()
-@click.argument('argument', required=False)
+@click.command(help='Argument: url, word(s) or keyword. To search multiple words, wrap them around with double quotes or put "\\" before each space\n\nVersion: 2.1.3')
+@click.argument('argument')
 @click.option('--set', '-s', help='Set keywords to access your links', required=False)
 @click.option('--remove', '-r', help='Remove a keyword', required=False)
 def search(argument, set, remove):
@@ -12,7 +12,7 @@ def search(argument, set, remove):
         try:
             var = dataBase.get(set)
         except:
-            dataBase.addClass(set) # se la keyword ancora non è stata fissata viene aggiunta al database
+            dataBase.addClass(set)
             dataBase.addAttr(className=set, attrName='link', attrContent=argument)
         else:
             if var != None:
@@ -50,13 +50,3 @@ def search(argument, set, remove):
                 webbrowser.open(argument)
         else:
             webbrowser.open(argument)
-    else:
-        print(
-        '''Usage: wbsearch [-s][-r] [argument]
-
-Description: Search anything opening browser directly from terminal
-
-Options:
-    -s, --set       Set keyword to easily access links (enter keyword first, then link)
-    -r, --remove    Remove a keyword
-Version: 2.1.1''')

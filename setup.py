@@ -2,16 +2,18 @@ from setuptools import setup
 from pathlib import Path
 
 directory = Path(__file__).parent
-README = (directory / "README.md").read_text()
+longDescription = (directory/'README.md').read_text()
 
 setup(
     name='wbsearch',
-    author='Cargo',
-    version='1.1.2',
+    version='2.1.3',
     packages=['wbsearch'],
+    author_email='cargo.coder@gmail.com',
+    author='Cargo',
+    description='Search anything on main browser directly from terminal',
     install_requires=['click', 'KvK'],
-    license='MIT',
-    long_description=README,
+    long_description=longDescription,
+    long_description_content_type='text/markdown',
     entry_points='''
     [console_scripts]
     wbsearch=wbsearch:search

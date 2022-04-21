@@ -1,13 +1,14 @@
-import webbrowser, click, KvK
+import webbrowser, click, kvk
 from pathlib import Path
 
-@click.command(help='Argument: url, word(s) or keyword. To search multiple words, wrap them around with double quotes or put "\\" before each space\n\nVersion: 2.1.3')
-@click.argument('argument')
+@click.command(help='Argument: url, word(s) or keyword. To search multiple words, wrap them around with double quotes or put "\\" before each space\n\nVersion: 2.2.1')
+@click.argument('argument', required=False)
 @click.option('--set', '-s', help='Set keywords to access your links', required=False)
 @click.option('--remove', '-r', help='Remove a keyword', required=False)
-def search(argument, set, remove):
+@click.option('--keywords', '-k', count=True ,default=True, help='Show all the saved keywords', required=False)
+def search(argument, set, remove, keywords):
     path = Path(__file__).parent
-    dataBase = KvK.KvK(f'{path}/dataBase.kvk')
+    dataBase = kvk.KvK(f'{path}/dataBase.kvk')
     if set != None:
         try:
             var = dataBase.get(set)
@@ -50,3 +51,16 @@ def search(argument, set, remove):
                 webbrowser.open(argument)
         else:
             webbrowser.open(argument)
+    elif keywords:
+        try:
+            savedKeywords = dataBase.read()
+        except:
+            print('Now keyword saved yet')
+        else:
+            toPrint = 'Saved keywords:\n'
+            for classCont in savedKeywords:
+                for className in classCont:
+                    for attr in classCont[className]:
+                        link = (classCont[className])[attr]
+                        toPrint += f'\t {className} -> {link}\n'
+            print(toPrint)

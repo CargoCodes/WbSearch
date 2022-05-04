@@ -1,7 +1,7 @@
 import webbrowser, click, kvk
 from pathlib import Path
 
-@click.command(help='Argument: url, word(s) or keyword. To search multiple words, wrap them around with double quotes or put "\\" before each space\n\nVersion: 2.2.1')
+@click.command(help='Argument: url, word(s) or keyword. To search multiple words, wrap them around with double quotes or put "\\" before each space\n\nVersion: 2.3.1')
 @click.argument('argument', required=False)
 @click.option('--set', '-s', help='Set keywords to access your links', required=False)
 @click.option('--remove', '-r', help='Remove a keyword', required=False)
@@ -45,8 +45,13 @@ def search(argument, set, remove, keywords):
             try:
                 argument.index('https://')
             except:
-                argument = argument.replace(' ', '+')
-                webbrowser.open(f'https://www.google.com/search?q={argument}')
+                try:
+                    argument.index('www.')
+                except:
+                    argument = argument.replace(' ', '+')
+                    webbrowser.open(f'https://www.google.com/search?q={argument}')
+                else:
+                    webbrowser.open(f'https://{argument}/')
             else:
                 webbrowser.open(argument)
         else:
@@ -55,7 +60,7 @@ def search(argument, set, remove, keywords):
         try:
             savedKeywords = dataBase.read()
         except:
-            print('Now keyword saved yet')
+            print('No keyword saved yet')
         else:
             toPrint = 'Saved keywords:\n'
             for classCont in savedKeywords:

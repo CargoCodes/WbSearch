@@ -48,9 +48,13 @@ Type this command to get help.
 
 `Examples:`
 
-- Search a link:
+- Search a URL:
         
       $ wbsearch https://www.github.com/
+
+- Search a site:
+
+      $ wbsearch www.github.com
 
 - Search a word:
 
@@ -96,7 +100,7 @@ Type this command to get help.
             Argument: url, word(s) or keyword. To search multiple words, wrap them
             around with double quotes or put "\" before each space
 
-            Version: 2.2.1
+            Version: 2.3.1
 
           Options:
             -s, --set TEXT     Set keywords to access your links

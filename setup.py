@@ -6,7 +6,7 @@ longDescription = (directory/'README.md').read_text()
 
 setup(
     name='wbsearch',
-    version='2.2.1',
+    version='2.3.1',
     packages=['wbsearch'],
     author_email='cargo.coder@gmail.com',
     author='Cargo',
